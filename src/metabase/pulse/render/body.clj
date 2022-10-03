@@ -465,8 +465,8 @@
                 (let [label (first row)]
                   {:percentage (percentages (first row))
                    :color      (legend-colors (first row))
-                   :label      (if (or (datetime/temporal-string? label)
-                                       (boolean (parse-long label)))
+                   :label      (if (and (contains? label-viz-settings :date_style)
+                                       (datetime/temporal-string? label))
                                  (datetime/format-temporal-str
                                    timezone-id
                                    (first row)
