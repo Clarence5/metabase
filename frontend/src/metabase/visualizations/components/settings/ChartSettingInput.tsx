@@ -20,11 +20,13 @@ interface ChartSettingInputProps {
   value: string;
   onChange: (value: string) => void;
   id?: string;
+  onChangeSettings: () => void;
 }
 
 const ChartSettingInput = ({
   value,
   onChange,
+  onChangeSettings,
   ...props
 }: ChartSettingInputProps) => (
   <ChartSettingInputBlueChange
