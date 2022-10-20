@@ -13,6 +13,7 @@ import {
   PLUGIN_REDUX_MIDDLEWARES,
 } from "metabase/plugins";
 
+import AuthenticationOption from "metabase/admin/settings/components/widgets/AuthenticationOption";
 import AuthenticationWidget from "metabase/admin/settings/components/widgets/AuthenticationWidget";
 import GroupMappingsWidget from "metabase/admin/settings/components/widgets/GroupMappingsWidget";
 import SecretKeyWidget from "metabase/admin/settings/components/widgets/SecretKeyWidget";
@@ -29,15 +30,11 @@ PLUGIN_ADMIN_SETTINGS_UPDATES.push(sections =>
   updateIn(sections, ["authentication", "settings"], settings => [
     ...settings,
     {
-      key: "saml-enabled",
-      description: null,
-      widget: AuthenticationWidget,
-      getProps: (setting, settings) => ({
-        authName: t`SAML`,
-        authDescription: t`Allows users to login via a SAML Identity Provider.`,
-        authType: "saml",
-        authConfigured: settings["saml-configured"],
-      }),
+      authName: t`SAML`,
+      authDescription: t`Allows users to login via a SAML Identity Provider.`,
+      authType: "saml",
+      authEnabled: settings => settings["saml-enabled"],
+      widget: AuthenticationOption,
       getHidden: () => !hasPremiumFeature("sso"),
     },
     {
