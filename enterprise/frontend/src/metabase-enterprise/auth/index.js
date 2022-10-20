@@ -29,22 +29,26 @@ PLUGIN_ADMIN_SETTINGS_UPDATES.push(sections =>
   updateIn(sections, ["authentication", "settings"], settings => [
     ...settings,
     {
+      key: "saml-enabled",
+      description: null,
       widget: AuthenticationWidget,
-      getProps: () => ({
+      getProps: (setting, settings) => ({
         authName: t`SAML`,
         authDescription: t`Allows users to login via a SAML Identity Provider.`,
         authType: "saml",
-        authConfigured: true,
+        authConfigured: settings["saml-configured"],
       }),
       getHidden: () => !hasPremiumFeature("sso"),
     },
     {
+      key: "jwt-enabled",
+      description: null,
       widget: AuthenticationWidget,
-      getProps: () => ({
+      getProps: (setting, settings) => ({
         authName: t`JWT`,
         authDescription: t`Allows users to login via a JWT Identity Provider.`,
         authType: "jwt",
-        authConfigured: true,
+        authConfigured: settings["jwt-configured"],
       }),
       getHidden: () => !hasPremiumFeature("sso"),
     },

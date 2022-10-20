@@ -1,6 +1,8 @@
 import React from "react";
 import PropTypes from "prop-types";
+import { connect } from "react-redux";
 import { t } from "ttag";
+import { updateSettings } from "metabase/admin/settings/settings";
 import SettingsBatchForm from "metabase/admin/settings/components/SettingsBatchForm";
 import { FormButton } from "./SettingsJWTForm.styled";
 
@@ -77,4 +79,8 @@ const BREADCRUMBS = [
   [t`JWT`],
 ];
 
-export default SettingsJWTForm;
+const mapDispatchToProps = {
+  updateSettings,
+};
+
+export default connect(null, mapDispatchToProps)(SettingsJWTForm);
