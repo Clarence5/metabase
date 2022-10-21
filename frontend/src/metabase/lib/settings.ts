@@ -197,12 +197,16 @@ class Settings {
   }
 
   // JWT or SAML is configured
-  isOtherSsoConfigured() {
-    return this.get("other-sso-configured?");
+  isOtherSsoEnabled() {
+    return this.get("other-sso-enabled?");
   }
 
   isSsoEnabled() {
-    return this.isLdapEnabled() || this.isGoogleAuthEnabled();
+    return (
+      this.isLdapEnabled() ||
+      this.isGoogleAuthEnabled() ||
+      this.isOtherSsoEnabled()
+    );
   }
 
   isPasswordLoginEnabled() {
