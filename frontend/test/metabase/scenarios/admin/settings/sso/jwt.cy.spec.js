@@ -23,7 +23,7 @@ describeEE("scenarios > admin > settings > SSO > JWT", () => {
     cy.findByRole("switch", { name: "JWT" }).should("be.checked");
   });
 
-  it("should allow to save and not enable jwt", () => {
+  it("should allow to save but not enable jwt", () => {
     cy.visit("/admin/settings/authentication/jwt");
 
     enterJWTSettings();
