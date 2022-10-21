@@ -22,16 +22,26 @@ const propTypes = {
   onSubmit: PropTypes.func,
 };
 
+const SAML_ATTRIBUTES = [
+  "saml-attribute-email",
+  "saml-attribute-firstname",
+  "saml-attribute-lastname",
+];
+
 const SettingsSAMLForm = ({ elements = [], settingValues = {}, onSubmit }) => {
   const settings = _.indexBy(elements, "key");
   const fields = _.mapObject(settings, settingToFormField);
+  const defaultValues = _.mapObject(settings, "default");
   const acsCustomerUrl = `${MetabaseSettings.get("site-url")}/auth/sso`;
+  const attributeValues = _.object(
+    SAML_ATTRIBUTES.map(k => [k, settingValues[k] ?? defaultValues[k]]),
+  );
 
   return (
     <Form
       className="mx2"
       style={{ maxWidth: 520 }}
-      initialValues={settingValues}
+      initialValues={{ ...settingValues, ...attributeValues }}
       overwriteOnInitialValuesChange
       onSubmit={onSubmit}
     >
