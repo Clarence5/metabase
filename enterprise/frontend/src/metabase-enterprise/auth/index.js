@@ -45,7 +45,7 @@ PLUGIN_ADMIN_SETTINGS_UPDATES.push(sections =>
         authName: t`JWT`,
         authDescription: t`Allows users to login via a JWT Identity Provider.`,
         authType: "jwt",
-        authConfigured: settings["jwt-configured?"],
+        authConfigured: settings["jwt-configured"],
       }),
       getHidden: () => !hasPremiumFeature("sso"),
     },
