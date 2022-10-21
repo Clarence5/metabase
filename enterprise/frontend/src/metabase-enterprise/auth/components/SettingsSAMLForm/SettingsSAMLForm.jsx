@@ -34,7 +34,7 @@ const SettingsSAMLForm = ({ elements = [], settingValues = {}, onSubmit }) => {
   const defaultValues = _.mapObject(settings, "default");
   const acsCustomerUrl = `${MetabaseSettings.get("site-url")}/auth/sso`;
   const attributeValues = _.object(
-    SAML_ATTRIBUTES.map(k => [k, settingValues[k] ?? defaultValues[k]]),
+    SAML_ATTRIBUTES.map(key => [key, settingValues[key] ?? defaultValues[key]]),
   );
 
   return (
